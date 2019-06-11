@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+  <mat-form-field>
+    <input matInput [matDatepicker]="dateFromPicker" placeholder="Fecha desde" formControlName="dateFrom" />
+    <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+    <mat-datepicker #dateFromPicker></mat-datepicker>
+    <mat-error>
+      mierda
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="dateToPicker"
+      placeholder="Fecha hasta"
+      formControlName="dateTo"
+      [errorStateMatcher]="errorMatcher"
+    />
+    <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+    <mat-datepicker #dateToPicker></mat-datepicker>
+    <mat-error *ngIf="form?.hasError('dateComparison')">
+      La fecha hasta debe ser superior a la fecha desde
+    </mat-error>
+  </mat-form-field>
+</form>
